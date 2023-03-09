@@ -1,2 +1,5 @@
 # motopp
-A personal project
+
+```Bash
+docker-compose up
+```
