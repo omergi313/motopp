@@ -2,15 +2,32 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 import logging
+import os
 
 db = SQLAlchemy()
 logging.basicConfig(filename='app.log', level=logging.INFO, format='%(asctime)s %(levelname)s: %(message)s')
 
+user = "root"
+if 'ogindes' in os.environ.get("PWD"):
+    host = "localhost"
+    password = "idkbro"
+    logging.info('$'*50)
+    logging.info('ogindes')
+    logging.info('$' * 50)
+else:
+    logging.info('$'*50)
+    logging.info('baaaaaaaa')
+    host = "mysql"
+    password = ""
+    logging.info('$' * 50)
+
+
+
 def create_app():
     app = Flask(__name__)
-
-    app.config['SECRET_KEY'] = 'secret-key-goes-here'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+    app.config['SECRET_KEY'] = '1234567890'
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{user}:{password}@{host}:3306/motopp'
+    app.config['SQLALCHEMY_ECHO'] = True
 
     db.init_app(app)
     login_manager = LoginManager()

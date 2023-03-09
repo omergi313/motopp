@@ -1,0 +1,9 @@
+Flask-Login
+Flask-SQLAlchemy
+Flask-WTF
+macholib
+pip
+pipdeptree
+mysqlclient
+mysql-connector-python
+pymysql

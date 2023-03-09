@@ -1,0 +1,12 @@
+services:
+  motopp:
+    build: ./motopp/
+    command: sh -c "bash motopp/run.sh"
+    depends_on:
+      - mysql
+  mysql:
+    build: ./mysql/
+    restart: always
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+      MYSQL_DATABASE: 'motopp'
