@@ -10,4 +10,4 @@ done
 export FLASK_APP=motopp
 export FLASK_DEBUG=$debug
 echo "Starting Flask Server"
-flask run
+flask run --host=0.0.0.0 --port=5000

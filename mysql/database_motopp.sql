@@ -1,6 +1,6 @@
 USE motopp;
 
-CREATE TABLE users (
+CREATE TABLE user (
     id INT PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(100) UNIQUE,
     password VARCHAR(100),
@@ -9,9 +9,9 @@ CREATE TABLE users (
 
 
 CREATE TABLE bike (
-    id SERIAL PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100),
     description VARCHAR(1000),
     user_id INTEGER,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES user(id)
 );
