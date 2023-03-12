@@ -7,3 +7,4 @@ pipdeptree
 mysqlclient
 mysql-connector-python
 pymysql
+python-decouple
