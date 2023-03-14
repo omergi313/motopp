@@ -25,7 +25,8 @@ def mybikes():
 def add_bike():
     form = AddBikeForm()
     if form.validate_on_submit():
-        bike = Bike(name=form.name.data, description=form.description.data, user_id=current_user.id)
+        bike = Bike(name=form.name.data, make=form.make.data, model=form.model.data, year=form.year.data,
+                    user_id=current_user.id)
         db.session.add(bike)
         db.session.commit()
         logging.info(f"Bike added: {bike.name}")
