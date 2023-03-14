@@ -10,4 +10,5 @@ done
 export FLASK_APP=motopp
 export FLASK_DEBUG=$debug
 echo "Starting Flask Server"
+python parts_scraper/setup.py install
 flask run --host=0.0.0.0 --port=5000

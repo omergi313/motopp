@@ -4,7 +4,9 @@ Flask-WTF
 macholib
 pip
 pipdeptree
-mysqlclient
 mysql-connector-python
 pymysql
-python-decouple
+cryptography
+requests
+beautifulsoup4
+pandas

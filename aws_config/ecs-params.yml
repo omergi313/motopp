@@ -1,0 +1,24 @@
+version: 1
+task_definition:
+  task_execution_role: ecsTaskExecutionRole
+  ecs_network_mode: awsvpc
+  task_size:
+    mem_limit: 2GB
+    cpu_limit: 256
+  services:
+    web:
+      repository_credentials:
+          image: "omergindes/flask_side"
+          credentials_parameter: "arn:aws:secretsmanager:eu-north-1:151680969914:secret:dev/DockerHubSecret-qyZIFj"
+    db:
+      repository_credentials:
+        image: "omergindes/mysql_side"
+        credentials_parameter: "arn:aws:secretsmanager:eu-north-1:151680969914:secret:dev/DockerHubSecret-qyZIFj"
+run_params:
+  network_configuration:
+    awsvpc_configuration:
+      subnets:
+        - "subnet-03e11c99b53be1da7"
+      security_groups:
+        - "sg-00567d0a50ba4f265"
+      assign_public_ip: ENABLED

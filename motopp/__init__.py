@@ -1,11 +1,36 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-import logging
+from logging.config import dictConfig
 from motopp import config
+from parts_scraper import run as run_scraper
+
 
 db = SQLAlchemy()
-logging.basicConfig(filename='app.log', level=logging.DEBUG, format='%(asctime)s %(levelname)s: %(message)s')
+dictConfig({
+    'version': 1,
+    'formatters': {'default': {
+        'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+    }},
+    'handlers': {'wsgi': {
+        'class': 'logging.StreamHandler',
+        'stream': 'ext://flask.logging.wsgi_errors_stream',
+        'formatter': 'default'
+    }},
+    'root': {
+        'level': 'INFO',
+        'handlers': ['wsgi']
+    }
+})
+
+
+def populate_parts():
+    from .models import Part
+
+    if Part.query.count() > 0:
+        return
+
+    run_scraper()
 
 
 def create_app():
@@ -29,7 +54,11 @@ def create_app():
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
+    from .marketplace import market as market_blueprint
+    app.register_blueprint(market_blueprint)
+
     with app.app_context():
         db.create_all()
+        populate_parts()
 
     return app

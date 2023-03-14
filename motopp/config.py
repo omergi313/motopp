@@ -6,6 +6,6 @@ class Config:
         SQLALCHEMY_ECHO = True
 
     else:
-        SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:idkbro@localhost:3306/motopp'
+        SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:root@localhost:3306/motopp'
         SECRET_KEY = '123456789'
-        SQLALCHEMY_ECHO = True
+        SQLALCHEMY_ECHO = False

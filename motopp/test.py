@@ -19,3 +19,7 @@ users = cursor.fetchall()
 conn.close()
 
 print(users)
+
+from motopp import db
+from motopp.models import liked_by
+

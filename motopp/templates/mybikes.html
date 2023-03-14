@@ -9,7 +9,7 @@
 {% if bikes %}
 <ul>
     {% for bike in bikes %}
-    <li>{{ bike.name }} - {{ bike.description }}</li>
+    <li>{{ bike.name }} - {{ bike.make }} - {{ bike.model }}</li>
     {% endfor %}
 </ul>
 {% else %}
