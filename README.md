@@ -16,5 +16,5 @@ MYSQL_PASSWORD=your_mysql_password
 ```
 Finally, run:
 ```Bash
-docker-compose up
+docker-compose up --build -d
 ```
