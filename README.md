@@ -1,5 +1,5 @@
 # motopp
-
+# ! NOT DONE YET !
 ## Description
 To run a local instance of the app, you need to have docker and docker-compose installed.
 Then run:
