@@ -1,4 +1,3 @@
-DROP DATABASE IF EXISTS motopp;
 CREATE DATABASE motopp;
 
 USE motopp;
@@ -28,7 +27,7 @@ CREATE TABLE part (
     external_url VARCHAR(255)
 );
 
-DROP TABLE IF EXISTS users_parts;
+
 CREATE TABLE users_parts (
     id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
