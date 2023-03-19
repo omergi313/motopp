@@ -4,6 +4,7 @@ from flask_login import LoginManager
 from logging.config import dictConfig
 from . import config
 
+
 db = SQLAlchemy()
 dictConfig({
     'version': 1,
@@ -48,6 +49,5 @@ def create_app():
 
     with app.app_context():
         db.create_all()
-    print("123"*100)
 
     return app
