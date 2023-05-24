@@ -3,9 +3,12 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from logging.config import dictConfig
 from . import config
+from typing import Any
 
-
+# Configure database
 db = SQLAlchemy()
+
+# Configure logging
 dictConfig({
     'version': 1,
     'formatters': {'default': {
@@ -22,8 +25,12 @@ dictConfig({
     }
 })
 
+def create_app() -> Flask:
+    """
+    Create a Flask application instance with database, authentication and logging configuration.
 
-def create_app():
+    :return: The created Flask application.
+    """
     app = Flask(__name__)
     app.config.from_object(config.Config)
 
@@ -35,7 +42,13 @@ def create_app():
     from .models import User
 
     @login_manager.user_loader
-    def load_user(user_id):
+    def load_user(user_id: str) -> Any:
+        """
+        Load a user instance from the database.
+
+        :param user_id: The ID of the user to load.
+        :return: The loaded User instance, or None if not found.
+        """
         return User.query.get(int(user_id))
 
     from .auth import auth as auth_blueprint
