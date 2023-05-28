@@ -9,12 +9,22 @@ auth = Blueprint('auth', __name__)
 
 
 @auth.route('/login')
-def login():
+def login() -> str:
+    """
+    Render the login page.
+
+    :return: Rendered login page.
+    """
     return render_template('login.html')
 
 
 @auth.route('/login', methods=['POST'])
-def login_post():
+def login_post() -> str:
+    """
+    Handle the login POST request. The user is authenticated with email and password.
+
+    :return: Redirect to user's bikes page on successful login, else back to login page.
+    """
     email = request.form.get('email')
     password = request.form.get('password')
     remember = True if request.form.get('remember') else False
@@ -31,18 +41,27 @@ def login_post():
 
 
 @auth.route('/signup')
-def signup():
+def signup() -> str:
+    """
+    Render the signup page.
+
+    :return: Rendered signup page.
+    """
     return render_template('signup.html')
 
 
 @auth.route('/signup', methods=['POST'])
-def signup_post():
+def signup_post() -> str:
+    """
+    Handle the signup POST request. The user is registered with email, name and password.
+
+    :return: Redirect to login page on successful registration, else back to signup page.
+    """
     email = request.form.get('email')
     name = request.form.get('name')
     password = request.form.get('password')
 
-    user = User.query.filter_by(
-        email=email).first()
+    user = User.query.filter_by(email=email).first()
 
     if user:
         flash('Email address already exists')
@@ -58,6 +77,11 @@ def signup_post():
 
 @auth.route('/logout')
 @login_required
-def logout():
+def logout() -> str:
+    """
+    Logout the currently logged in user.
+
+    :return: Redirect to the index page after logout.
+    """
     logout_user()
     return redirect(url_for('main.index'))
