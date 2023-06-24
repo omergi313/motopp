@@ -2,7 +2,7 @@ services:
   motopp:
     image: omergindes/flask_side
     build: ./motopp/
-    command: sh -c "sleep 200000 && bash motopp/run.sh"
+    command: sh -c "sleep 20 && bash motopp/run.sh"
     depends_on:
       - mysql
     ports:
